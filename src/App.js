@@ -12,6 +12,9 @@ const App = () => {
       <Row> {/* p-0 m-0*/}
         {/* </Main> */}
         <Sidebar></Sidebar>
+        <div class="d-flex my-auto p-0" style={{"height": "90vh","width":"2rem"}}>
+          <div class="vr bg-secondary"></div>
+        </div>
         <Main></Main>
       </Row>
     </Container>
