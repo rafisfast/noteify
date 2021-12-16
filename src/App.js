@@ -9,10 +9,10 @@ import Main from './main'
 const App = () => {
   return(
     <Container fluid className='overflow-hidden'> {/* p-0*/}
-      <Row> {/* p-0 m-0*/}
+      <Row className='no-gutter'> {/* p-0 m-0*/}
         {/* </Main> */}
         <Sidebar></Sidebar>
-        <div class="d-flex my-auto p-0" style={{"height": "90vh","width":"2rem"}}>
+        <div class="d-flex my-auto p-0" style={{"height": "90vh","width":".25rem"}}>
           <div class="vr bg-secondary"></div>
         </div>
         <Main></Main>

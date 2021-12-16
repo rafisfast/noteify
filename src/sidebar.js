@@ -7,7 +7,7 @@ const Sidebar = () => {
     // }>
 
     // </div>
-    <Col sm={2}>
+    <Col>
       <div className='sidebar py-3 my-1 m-2 mr-4 border-right'>
         <div className='inner-sidebar p-0'>
            <div></div>

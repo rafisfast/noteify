@@ -71,13 +71,6 @@
   border-radius: 1rem;
 }
 
-.inner-sidebar::after {
-  height: 80%;
-  width: 1px;
-  position: relative;
-  display: block ;
-  background: red;
-}
 
 .v-d {
   border-left: 6px solid black;
