@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Container, Row, Col } from 'react-bootstrap';
+import Sidebar from './sidebar';
+import Main from './main'
+
+const App = () => {
+  return(
+    <Container fluid className='overflow-hidden'> {/* p-0*/}
+      <Row> {/* p-0 m-0*/}
+        {/* </Main> */}
+        <Sidebar></Sidebar>
+        <Main></Main>
+      </Row>
+    </Container>
+  )
 }
 
-export default App;
+export default App

@@ -1,3 +1,5 @@
+* { box-sizing: border-box; }
+
 .App {
   text-align: center;
 }
@@ -26,6 +28,66 @@
 
 .App-link {
   color: #61dafb;
+}
+
+
+.Notes {
+  background-color: yellow;
+  height:10vh;
+}
+
+.note {
+  background-color: aqua;
+  /* height:calc(100vh - 3rem); */
+  height:100%;
+  /* border-radius: 5%; */
+}
+
+.notes {
+  /* height:90vh; */
+    background: pink;
+    height:100%;
+    /* padding-top: 1.5rem;
+    padding-bottom: 1.5rem; */
+}
+
+.Title::after {
+  /* border: 1px red; */
+  /* width:50vw; */
+}
+
+.sidebar {
+  /* min-height:100vh; */
+  /* background-color: red; */
+  height: 99vh;
+  
+  /* position: relative; */
+}
+
+.inner-sidebar {
+  height: 100%;
+  background: yellow;
+}
+
+.main-content {
+  /* min-width: 100vw; */
+  /* background: pink; */
+  height: 99vh;
+  /* border-radius: 5rem; */
+  /* background: red; */
+}
+
+.search {
+  width:100%;
+  background-color: pink;
+  top:10px;
+  height:6vh;
+  position: relative;
+}
+
+.button {
+  width:150px;
+  height:80px
 }
 
 @keyframes App-logo-spin {
