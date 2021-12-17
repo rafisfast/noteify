@@ -5,7 +5,7 @@ const Main = () => {
     <Col>
       <div className="main-content py-3 my-1 m-2 mr-4 overflow-hidden">
         <div className='notes p-0 my-auto'>
-          <Container fluid className='overflow-auto pl-5 main-inner' style={{"width":"98%","height":"100%","-ms-overflow-style":"none","scrollbar-width":"none"}}>
+          <Container fluid className='overflow-auto pl-5 main-inner' style={{"width":"98%","height":"100%","msOverflowStyle":"none","scrollbarWidth":"none"}}>
             <h2 className='pt-3'>heehehe</h2>
             <hr></hr>
             <p className='text-muted'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris commodo quis imperdiet massa tincidunt. Vitae sapien pellentesque habitant morbi tristique senectus et. Fermentum leo vel orci porta non pulvinar neque. Turpis nunc eget lorem dolor. Lectus nulla at volutpat diam ut venenatis. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Et ultrices neque ornare aenean euismod elementum. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. At erat pellentesque adipiscing commodo elit at imperdiet dui accumsan.

@@ -7,13 +7,15 @@ const Sidebar = () => {
     // }>
 
     // </div>
-    <Col sm={2} style={{"min-width":"200px"}}>
+    
+    <Col xs={2} className='sidebar-col d-sm-none d-md-block' style={{"minWidth":"200px"}}>
       <div className='sidebar py-3 my-1 m-2 mr-4 border-right'>
         <div className='inner-sidebar p-0'>
            <div></div>
         </div>
       </div>
     </Col> 
+    
   )
 }
 
