@@ -65,6 +65,14 @@
   /* position: relative; */
 }
 
+.main-inner {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: 2px;  /* Firefox */
+}
+.main-inner::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
 .inner-sidebar {
   height: 100%;
   background: yellow;

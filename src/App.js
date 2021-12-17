@@ -8,7 +8,7 @@ import Main from './main'
 
 const App = () => {
   return(
-    <Container fluid className='overflow-hidden'> {/* p-0*/}
+    <Container fluid className='overflow-hidden '> {/* p-0*/}
       <Row className='no-gutter'> {/* p-0 m-0*/}
         {/* </Main> */}
         <Sidebar></Sidebar>
