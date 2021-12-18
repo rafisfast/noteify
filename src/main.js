@@ -16,7 +16,7 @@ const Main = () => {
 
   return(
     <Col>
-      <div className="main-content py-3 my-1 m-2 mr-4 overflow-hidden">
+      <div className="main-content py-3 my-1 m-2 mx-1 overflow-hidden">
         <div className='notes p-0 my-auto'>
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"width":"98%","height":"100%"}}>
             <div ref={title} contentEditable="true" className='overflow-hidden pt-2 main-title'>

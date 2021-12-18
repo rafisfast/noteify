@@ -21,7 +21,7 @@ const App = () => {
           List
         </Button>
         <Sidebar></Sidebar>
-        <div className="d-flex my-auto p-0" style={{"height": "90vh","width":".25rem"}}>
+        <div className="d-flex my-auto p-0" style={{"height": "95vh","width":".2rem"}}>
           <div className="vr bg-secondary"></div>
         </div>
         <Main></Main>
