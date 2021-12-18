@@ -78,13 +78,15 @@
   width: 100%;
   font-size:30px;
   font-weight:bold;
-  height: 60px; /* always 2x font-size */
+  height: 50px;
+
+  /* always 2x font-size */
   /* height: 15%; */
 }
 
 .main-text {
   width:100%;
-  height:100%;
+  /* height:100%; */
 }
 
 textarea {
@@ -95,8 +97,19 @@ textarea {
   border: none;
   resize: none !important;
 }
+/* 
+[contenteditable].single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
 
-textarea:focus {
+[contenteditable="true"].single-line * {
+  display:inline;
+  white-space:nowrap;
+} */
+
+[contenteditable] {
   outline: none;
 }
 
@@ -109,7 +122,6 @@ textarea:focus {
   background: yellow;
   border-radius: 1rem;
 }
-
 
 .v-d {
   border-left: 6px solid black;
