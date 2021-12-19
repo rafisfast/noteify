@@ -3,9 +3,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
+
 import Sidebar from './sidebar';
 import Main from './main'
 import SidebarOffCanvas from './sidebar_offcanvas';
+import Search from './search';
 
 const App = () => {
 
@@ -14,6 +16,9 @@ const App = () => {
   const onOpen = () => {setshow(true)}
 
   return(
+    <>
+    <Search>
+    </Search>
     <Container fluid className='overflow-hidden'> {/* p-0*/}
       <Row className='no-gutter'> {/* p-0 m-0*/}
         {/* </Main> */}
@@ -28,6 +33,7 @@ const App = () => {
         <SidebarOffCanvas show={show} onClose={onClose}></SidebarOffCanvas>
       </Row>
     </Container>
+    </>
   )
 }
 
