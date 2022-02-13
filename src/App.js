@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
-import Sidebar from './sidebar';
-import Main from './main'
-import SidebarOffCanvas from './sidebar_offcanvas';
-import Search from './search';
+import Sidebar from './components/sidebar/sidebar';
+import Main from './components/main/main'
+import SidebarOffCanvas from './components/sidebar/sidebar_offcanvas';
+import Search from './components/search/search';
 
 const App = () => {
 
@@ -17,8 +17,8 @@ const App = () => {
 
   return(
     <>
-    <Search>
-    </Search>
+    {/* <Search>
+    </Search> */}
     <Container fluid className='overflow-hidden'> {/* p-0*/}
       <Row className='no-gutter'> {/* p-0 m-0*/}
         {/* </Main> */}

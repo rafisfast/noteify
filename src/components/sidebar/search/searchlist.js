@@ -3,14 +3,14 @@ import { ListGroup, Badge } from 'react-bootstrap';
 
 const Searchlist = (props) => {
 
-  return(
-    // <div style={
-    //   {"background":"red","width":"100vw"}
-    // }>
+  const show = props.show
+  const tag  = props.tag.current
 
-    // </div>
-    
-    <ListGroup as="ol" numbered style={{"width":"250px"}} {...props}>
+  console.log(tag)
+
+  return(
+    show && 
+    <ListGroup as="ol" className='searchlist' numbered style={{"width":"250px","position":"absolute","z-index":"998"}}>
       <ListGroup.Item
         as="li"
         className="d-flex justify-content-between align-items-start"
