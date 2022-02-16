@@ -1,7 +1,10 @@
 import { useRef, useEffect, useState } from 'react';
 import { Container, Row, Col, InputGroup, FormControl, OverlayTrigger, Button } from 'react-bootstrap';
+
 import Searchlist from './search/searchlist';
 import Search from './search/search';
+
+import Collection from './collection/collection';
 
 const Sidebar = () => {
 
@@ -22,6 +25,7 @@ const Sidebar = () => {
         <div className='inner-sidebar'>
           <Container fluid className='py-2 px-1' ref={con}>
             <Search></Search>
+            <Collection></Collection>
           </Container>
         </div>
       </div>

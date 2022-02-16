@@ -28,13 +28,13 @@ const Main = (props) => {
   },[truncated])
 
   return(
-    <Col className='col-9-5'>
-      <div className="main-content py-3 my-1  overflow-hidden">
+    <Col style={{"overflow":"auto"}}>
+      <div className="main-content py-3 my-1 overflow-hidden">
         <div className='notes my-auto' >
-          <Container fluid className='overflow-auto pl-5 main-inner' style={{"width":"98%","height":"100%"}}>
-            <div ref={title} contentEditable="true" className='overflow-hidden pt-2 main-title'>
+          <Container fluid className='overflow-auto pl-5 main-inner' style={{"height":"100%"}}>
+            <div ref={title} contentEditable="true" className='pt-2 main-title'>
               <p ref={text} className='py-1' style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}}>
-                heehehe Title
+                heehehe Title gkasdlfklasdkfslasdlfkaslfksadlk
               </p>
             </div>
             <hr></hr>
