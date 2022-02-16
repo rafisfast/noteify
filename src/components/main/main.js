@@ -1,9 +1,10 @@
 import { useRef, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 
-const Main = () => {
+const Main = (props) => {
 
   const title = useRef()
+  const text  = useRef()
 
   useEffect(()=> {
     // prevent contenteditable entering
@@ -12,16 +13,22 @@ const Main = () => {
             evt.preventDefault();
         }
     });
+    title.current.addEventListener('keydown', (evt) => {
+      console.log(evt.which)
+      if ((text.current.innerHTML + evt.key).length > 20) {
+        evt.preventDefault()
+      }
+    })
   },[])
 
   return(
     <Col>
       <div className="main-content py-3 my-1  overflow-hidden">
-        <div className='notes p-0 my-auto'>
+        <div className='notes my-auto' style={{"display":"inline-flex"}}>
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"width":"98%","height":"100%"}}>
             <div ref={title} contentEditable="true" className='overflow-hidden pt-2 main-title'>
-              <p className='p-0'>
-              heehehe Title
+              <p ref={text} className='py-1' style={{"text-overflow":"ellipsis","width":"900px","white-space":"nowrap","overflow":"hidden"}}>
+                heehehe Title
               </p>
             </div>
             <hr></hr>
@@ -37,8 +44,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Facilisi cras fermentum odio eu feugiat pretium nibh ipsum consequat. At risus viverra adipiscing at. Duis at consectetur lorem donec massa sapien faucibus et molestie. Auctor urna nunc id cursus metus aliquam. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Id semper risus in hendrerit gravida rutrum. Nec feugiat in fermentum posuere. A cras semper auctor neque vitae tempus. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Tristique senectus et netus et malesuada fames. Orci eu lobortis elementum nibh tellus molestie nunc non blandit. Cursus in hac habitasse platea. Viverra accumsan in nisl nisi scelerisque eu. Ut eu sem integer vitae justo eget.
              </i>
             </div>
-            
           </Container>
+          <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>
+            <b>Last Edited..</b>
+          </span>
         </div>
       </div>
     </Col>
