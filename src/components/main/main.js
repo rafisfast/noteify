@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRef, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 
@@ -6,28 +7,33 @@ const Main = (props) => {
   const title = useRef()
   const text  = useRef()
 
+  const [truncated,setTruncation] = useState(false)
+  
+  const onkeypress = (evt) => {
+    const t = text.current.innerHTML
+    if (evt.which === 13) {
+      evt.preventDefault();
+    }
+    if ((t + evt.key).length > 64) {
+      evt.preventDefault()
+    }
+  }
+
   useEffect(()=> {
     // prevent contenteditable entering
-    title.current.addEventListener('keypress', (evt) => {
-        if (evt.which === 13) {
-            evt.preventDefault();
-        }
-    });
-    title.current.addEventListener('keydown', (evt) => {
-      console.log(evt.which)
-      if ((text.current.innerHTML + evt.key).length > 20) {
-        evt.preventDefault()
-      }
-    })
-  },[])
+    title.current.addEventListener('keypress',onkeypress);
+    return () => {
+      title.current.removeEventListener('keypress',onkeypress)
+    }
+  },[truncated])
 
   return(
-    <Col>
+    <Col className='col-9-5'>
       <div className="main-content py-3 my-1  overflow-hidden">
-        <div className='notes my-auto' style={{"display":"inline-flex"}}>
+        <div className='notes my-auto' >
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"width":"98%","height":"100%"}}>
             <div ref={title} contentEditable="true" className='overflow-hidden pt-2 main-title'>
-              <p ref={text} className='py-1' style={{"text-overflow":"ellipsis","width":"900px","white-space":"nowrap","overflow":"hidden"}}>
+              <p ref={text} className='py-1' style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}}>
                 heehehe Title
               </p>
             </div>

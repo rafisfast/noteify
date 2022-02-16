@@ -130,6 +130,11 @@ textarea {
   width: 20.83333% !important;
 }
 
+.col-9-5 {
+  flex: 0 0 auto;
+  width: 79,16667% !important;
+}
+
 .sidebar-searchbox-container {
   position: relative;
   display: inline-flex;

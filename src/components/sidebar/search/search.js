@@ -39,7 +39,6 @@ const Search = () => {
     <>
     <div className='mx-auto sidebar-searchbox-container'>
       <input ref={search} id={"search"} className="sidebar-searchbox form-control" cancel={()=>setShow(false)} onKeyDown={()=>{setShow(true);setText(search.current.value)}}/>
-      {console.log(text.length)}
       <button ref={button} className='sidebar-searchbox-button' style={buttonstyle} onClick={()=>{search.current.value = "";setText("")}}>X</button>
     </div>
      <Searchlist show={show} tag={search} top={["Konh ohkeraogkas"," johngasflasflasflsadgasdhlsadkgaskfpask"]}>
