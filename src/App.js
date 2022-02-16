@@ -7,7 +7,6 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import Sidebar from './components/sidebar/sidebar';
 import Main from './components/main/main'
 import SidebarOffCanvas from './components/sidebar/sidebar_offcanvas';
-import Search from './components/search/search';
 
 const App = () => {
 

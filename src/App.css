@@ -149,9 +149,11 @@ textarea {
 
 .sidebar-searchbox-container {
   position: relative;
-  display: inline-flex;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  height: 28px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .sidebar-searchbox-button {

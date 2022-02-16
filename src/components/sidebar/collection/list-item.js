@@ -9,7 +9,7 @@ const ListItem = (props) => {
     <li className={clas}>
       <Row>
       <Col>
-        Text
+        Texts
       </Col>
       <Col>
         <div className='list-item-collection' style={{"background":color}}></div>

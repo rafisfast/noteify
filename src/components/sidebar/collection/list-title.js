@@ -6,13 +6,13 @@ const ListTitle = (props) => {
   const color = props.color
 
   return (
-    <li>
+    <li className='pt-2'>
       <Row>
         <Col>
-          <b >Notes</b>
+          <b style={{"font-size":"20px"}}>Notes</b>
         </Col>
         <Col style={{"textAlign":"right"}}>
-          <img src={plus} style={{"border":"none","width":"15px","height":"15px"}}/>
+          <img src={plus} style={{"border":"none","width":"18px","height":"18px"}}/>
         </Col>
       </Row>
     </li>
