@@ -23,7 +23,7 @@
     border-radius: 1rem;
     /* padding-top: 1.5rem;
     padding-bottom: 1.5rem; */
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     padding-bottom: 25px !important;
     color: white;
 }
@@ -95,7 +95,8 @@ textarea {
 
 .inner-sidebar {
   height: 100%;
-  background: #bb005f;
+  /* background: #bb005f; */
+  background:#665102;
   border-radius: 1rem;
 }
 
