@@ -9,10 +9,10 @@ const ListTitle = (props) => {
     <li className='pt-2'>
       <Row>
         <Col>
-          <b style={{"font-size":"20px"}}>Notes</b>
+          <b className="collection-title">Notes</b>
         </Col>
-        <Col style={{"textAlign":"right"}}>
-          <img src={plus} style={{"border":"none","width":"18px","height":"18px"}}/>
+        <Col style={{"textAlign":"right","padding-right":"10px"}} >
+          <img className='plus' src={plus} style={{"border":"none","width":"18px","height":"18px"}}/>
         </Col>
       </Row>
     </li>

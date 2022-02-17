@@ -8,7 +8,7 @@ const ListItem = (props) => {
   return (
     <li className={clas}>
       <Row>
-      <Col>
+      <Col className='list-item-name'>
         Texts
       </Col>
       <Col>

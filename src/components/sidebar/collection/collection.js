@@ -5,12 +5,14 @@ import { Button, Overlay, OverlayTrigger, Tooltip, Col, Row } from 'react-bootst
 import ListItem from './list-item';
 import ListTitle from './list-title'
 
-const Collection = () => {
+const Collection = (props) => {
+
+  const clas = props.class
 
   return (
     <>
-      <div className='py-2'>
-        <ul className='px-2' style={{"list-style-type": "none"}}>
+      <div className={clas}>
+        <ul className='px-2 m-0' style={{"list-style-type": "none"}}>
 
           <ListTitle>
           </ListTitle>

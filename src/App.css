@@ -1,5 +1,9 @@
 /* * { box-sizing: border-box; } */
 
+.body {
+  font-family: Helvetica Neue;
+}
+
 .Notes {
   background-color: yellow;
   height:10vh;
@@ -14,12 +18,14 @@
 
 .notes {
   /* height:90vh; */
-    background: pink;
+    background: #434343;
     height:100%;
     border-radius: 1rem;
     /* padding-top: 1.5rem;
     padding-bottom: 1.5rem; */
+    border: 1px solid grey;
     padding-bottom: 25px !important;
+    color: white;
 }
 
 .Title::after {
@@ -89,8 +95,21 @@ textarea {
 
 .inner-sidebar {
   height: 100%;
-  background: yellow;
+  background: #bb005f;
   border-radius: 1rem;
+}
+
+.list-item-name {
+  color: white;
+}
+
+.collection-title {
+  font-size: 20px;
+  color: #ffb100;
+}
+
+.plus {
+  fill:white;
 }
 
 .v-d {
@@ -216,6 +235,7 @@ textarea {
   width: 100%;
   padding-right: 26px !important;
   box-sizing: border-box;
+  border: none !important;
 }
 
 .sidebar-searchbox:focus {
