@@ -6,7 +6,7 @@ const ListItem = (props) => {
   const color = props.color
 
   return (
-    <li className={clas}>
+    <li className={clas + " list-item"}>
       <Row>
       <Col className='list-item-name'>
         Texts
@@ -14,6 +14,14 @@ const ListItem = (props) => {
       <Col>
         <div className='list-item-collection' style={{"background":color}}></div>
       </Col>
+      </Row>
+      <Row>
+        <ul style={{"list-style-type": "none"}}>
+          <li className='list-item-indent'>Hehe</li>
+          <li className='list-item-indent'>Hehe</li>
+          <li className='list-item-indent'>Hehe</li>
+          <li className='list-item-indent'>Hehe</li>
+        </ul>
       </Row>
     </li>
   )

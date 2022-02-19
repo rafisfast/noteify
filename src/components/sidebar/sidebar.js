@@ -5,6 +5,7 @@ import Searchlist from './search/searchlist';
 import Search from './search/search';
 
 import Collection from './collection/collection';
+import Group from './group/group';
 
 const Sidebar = () => {
 
@@ -26,7 +27,7 @@ const Sidebar = () => {
           <Container fluid className='py-2 px-1' ref={con}>
             <Search></Search>
             <Collection class='pt-2 m-0'></Collection>
-            <Collection></Collection>
+            <Group></Group>
           </Container>
         </div>
       </div>

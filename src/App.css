@@ -109,8 +109,8 @@ textarea {
   color: #ffb100;
 }
 
-.plus {
-  fill:white;
+.plus:hover {
+  opacity: .5;
 }
 
 .v-d {
@@ -227,6 +227,48 @@ textarea {
 .searchlistitem-text {
   cursor:default;
 }
+
+.list-item {
+  color: white;
+}
+
+.list-item-indent {
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+
+.list-item-collection {
+  position: relative;
+}
+
+.list-item-invis {
+  width: 100%;
+  height: 100%;
+  min-height:25px;
+  min-width: 1px;
+}
+
+.list-item:hover {
+  opacity: .5;
+}
+
+.list-item-collection:hover {
+  opacity: .5;
+}
+
+.active {
+  opacity: .5;
+}
+
+.list-item-name:hover {
+  opacity: .5;
+}
+
+.list-item-name {
+  cursor: default;
+}
+
 
 .sidebar-searchbox {
   background: #434343 !important;

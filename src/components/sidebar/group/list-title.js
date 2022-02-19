@@ -9,7 +9,7 @@ const ListTitle = (props) => {
     <li className='pt-2'>
       <Row>
         <Col>
-          <b className="collection-title">Notes</b>
+          <b className="collection-title">Folders</b>
         </Col>
         <Col style={{"textAlign":"right","padding-right":"10px"}} >
           <img className='plus' src={plus} style={{"border":"none","width":"18px","height":"18px"}}/>
