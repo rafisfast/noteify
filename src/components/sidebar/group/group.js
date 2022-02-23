@@ -10,6 +10,7 @@ const Group = (props) => {
   const clas = props.class
   const folders = props.folders
   const notes   = props.notes
+  const title = props.title
 
   return (
     <>
@@ -19,16 +20,36 @@ const Group = (props) => {
           <ListTitle>
           </ListTitle>
 
-          <ListItem class="pt-1" color="red">
-          </ListItem>
-          <ListItem color="aqua">
-          </ListItem>
-          <ListItem color="orange">
-          </ListItem>
-          <ListItem color="pink">
-          </ListItem>
-          <ListItem color="green">
-          </ListItem>
+          {
+          folders.map((folder,i)=> {
+
+            if (i === 0) {
+              return (
+              <ListItem class="pt-1" name={folder.name} color={folder.tag_color} children={folder.children} notes={notes}>
+              </ListItem>
+              )
+            } else {
+              return (
+              <ListItem name={folder.name} color={folder.tag_color} children={folder.children} notes={notes}>
+              </ListItem>
+              )
+            }
+
+            // return folder.children.map((child)=> {
+            // console.log(child, "C")
+
+            //   return notes.map((note)=> {
+            //     if (note.id === child.id) {
+            //       console.log(note,folder)
+                  
+                 
+            //     }
+                
+            //   })
+
+            // })
+          })
+          }
           
         </ul>
       </div>

@@ -16,8 +16,8 @@ const App = () => {
   const onClose = () => {setshow(false)}
   const onOpen = () => {setshow(true)}
 
-  const [notes,setnotes] = useState({})
-  const [folders,setfolders] = useState({})
+  const [notes,setnotes] = useState([])
+  const [folders,setfolders] = useState([])
 
   useEffect(()=> {
     axios.post('http://localhost:500/fetch-data',{},{  headers: { 'Content-Type': 'application/json'}, withCredentials: true })
@@ -25,6 +25,8 @@ const App = () => {
       const data = response.data
       setnotes(data.notes)
       setfolders(data.folders)
+      console.log(data.notes)
+      console.log(data.folders)
     })
   },[])
 

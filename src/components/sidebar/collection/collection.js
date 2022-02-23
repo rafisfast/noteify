@@ -19,16 +19,19 @@ const Collection = (props) => {
           <ListTitle>
           </ListTitle>
 
-          <ListItem class="pt-1" color="red">
-          </ListItem>
-          <ListItem color="aqua">
-          </ListItem>
-          <ListItem color="orange">
-          </ListItem>
-          <ListItem color="pink">
-          </ListItem>
-          <ListItem color="green">
-          </ListItem>
+          {notes.map((note,i)=> {
+            if (i === 0) {
+              return (
+                <ListItem class="pt-1" title={note.title} color={note.tag_color}>
+                </ListItem>
+              )
+            } else {
+              return (
+                <ListItem title={note.title} color={note.tag_color}>
+                </ListItem>
+              )
+            }
+          })}
           
         </ul>
       </div>

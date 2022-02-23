@@ -7,12 +7,13 @@ const ListItem = (props) => {
 
   const clas  = props.class || ""
   const color = props.color
+  const title = props.title
 
   return (
     <li className={clas + " list-item"}>
       <Row>
       <Col className='list-item-name'>
-        Texts
+        {title}
       </Col>
       <Col>
         <div className='list-item-collection' style={{"background":color}}></div>

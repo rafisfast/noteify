@@ -4,12 +4,16 @@ const ListItem = (props) => {
 
   const clas  = props.class
   const color = props.color
+  const name  = props.name
+
+  const children = props.children
+  const notes    = props.notes
 
   return (
     <li className={clas + " list-item"}>
       <Row>
       <Col className='list-item-name'>
-        Texts
+        {name}
       </Col>
       <Col>
         <div className='list-item-collection' style={{"background":color}}></div>
@@ -17,10 +21,17 @@ const ListItem = (props) => {
       </Row>
       <Row>
         <ul style={{"list-style-type": "none"}}>
-          <li className='list-item-indent'>Hehe</li>
-          <li className='list-item-indent'>Hehe</li>
-          <li className='list-item-indent'>Hehe</li>
-          <li className='list-item-indent'>Hehe</li>
+          {children.map((child)=> {
+            return notes.map((note)=> {
+
+              if (note.id === child.id) {
+                return (               
+                  <li className='list-item-indent'>{note.title}</li>
+                )
+              }
+
+            })
+          })}
         </ul>
       </Row>
     </li>
