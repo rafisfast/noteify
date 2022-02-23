@@ -12,6 +12,8 @@ const Group = (props) => {
   const notes   = props.notes
   const title = props.title
 
+  const onclick = props.onclick
+
   return (
     <>
       <div className={clas}>
@@ -25,12 +27,12 @@ const Group = (props) => {
 
             if (i === 0) {
               return (
-              <ListItem class="pt-1" name={folder.name} color={folder.tag_color} children={folder.children} notes={notes}>
+              <ListItem class="pt-1" name={folder.name} onclick={onclick} color={folder.tag_color} children={folder.children} notes={notes}>
               </ListItem>
               )
             } else {
               return (
-              <ListItem name={folder.name} color={folder.tag_color} children={folder.children} notes={notes}>
+              <ListItem name={folder.name} onclick={onclick} color={folder.tag_color} children={folder.children} notes={notes}>
               </ListItem>
               )
             }

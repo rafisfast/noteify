@@ -11,6 +11,8 @@ const Collection = (props) => {
   const folders = props.folders
   const notes   = props.notes
 
+  const onclick = props.onclick
+
   return (
     <>
       <div className={clas}>
@@ -22,12 +24,12 @@ const Collection = (props) => {
           {notes.map((note,i)=> {
             if (i === 0) {
               return (
-                <ListItem class="pt-1" title={note.title} color={note.tag_color}>
+                <ListItem class="pt-1" onclick={onclick} id={note._id} title={note.title} color={note.tag_color}>
                 </ListItem>
               )
             } else {
               return (
-                <ListItem title={note.title} color={note.tag_color}>
+                <ListItem onclick={onclick} id={note._id} title={note.title} color={note.tag_color}>
                 </ListItem>
               )
             }

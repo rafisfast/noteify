@@ -9,6 +9,8 @@ const ListItem = (props) => {
   const children = props.children
   const notes    = props.notes
 
+  const onclick  = props.onclick
+
   return (
     <li className={clas + " list-item"}>
       <Row>
@@ -21,12 +23,12 @@ const ListItem = (props) => {
       </Row>
       <Row>
         <ul style={{"list-style-type": "none"}}>
-          {children.map((child)=> {
+          {children.map((id)=> {
             return notes.map((note)=> {
 
-              if (note.id === child.id) {
+              if (note._id === id) {
                 return (               
-                  <li className='list-item-indent'>{note.title}</li>
+                  <li  onClick={()=>onclick(id)} className='list-item-indent'>{note.title}</li>
                 )
               }
 

@@ -236,10 +236,15 @@ textarea {
   width: 80%;
   margin: auto;
   position: relative;
+  cursor: default;
 }
 
 .list-item-collection {
   position: relative;
+}
+
+.collection-title {
+  cursor: default;
 }
 
 .list-item-invis {

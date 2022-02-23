@@ -16,6 +16,8 @@ const Sidebar = (props) => {
   const folders = props.folders
   const notes   = props.notes
 
+  const onclick = props.onclick
+
   const [show, setShow] = useState(false);
 
   return(
@@ -30,8 +32,8 @@ const Sidebar = (props) => {
         <div className='inner-sidebar'>
           <Container fluid className='py-2 px-1' ref={con}>
             <Search notes={notes} folders={folders}></Search>
-            <Collection class='pt-2 m-0' notes={notes} folders={folders}></Collection>
-            <Group notes={notes} folders={folders}></Group>
+            <Collection class='pt-2 m-0' onclick={onclick} notes={notes} folders={folders}></Collection>
+            <Group notes={notes} onclick={onclick} folders={folders}></Group>
           </Container>
         </div>
       </div>

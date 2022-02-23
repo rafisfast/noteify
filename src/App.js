@@ -19,6 +19,9 @@ const App = () => {
   const [notes,setnotes] = useState([])
   const [folders,setfolders] = useState([])
 
+  const [title, settitle] = useState("Hello")
+  const [body, setbody] = useState("I")
+
   useEffect(()=> {
     axios.post('http://localhost:500/fetch-data',{},{  headers: { 'Content-Type': 'application/json'}, withCredentials: true })
     .then((response) => {
@@ -30,6 +33,17 @@ const App = () => {
     })
   },[])
 
+  const onClickNote = (id) => {
+    // const id = e.target.id()
+    notes.map((note)=> {
+      console.log(note._id,id)
+      if (note._id === id) {
+        settitle(note.title)
+        setbody(note.body)
+      }
+    })
+  }
+
   return(
     <>
     {/* <Search>
@@ -40,11 +54,11 @@ const App = () => {
         <Button className='d-md-none show-sidebar' variant="primary" onClick={onOpen}>
           List
         </Button>
-        <Sidebar notes={notes} folders={folders} ></Sidebar>
+        <Sidebar onclick={onClickNote} notes={notes} folders={folders} ></Sidebar>
         <div className="d-flex my-auto p-0" style={{"height": "95vh","width":".2rem"}}>
           <div className="vr bg-secondary"></div>
         </div>
-        <Main></Main>
+        <Main body={body} title={title}></Main>
         <SidebarOffCanvas show={show} onClose={onClose}></SidebarOffCanvas>
       </Row>
     </Container>

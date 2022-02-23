@@ -9,8 +9,12 @@ const ListItem = (props) => {
   const color = props.color
   const title = props.title
 
+  const id    = props.id
+
+  const onclick = props.onclick
+
   return (
-    <li className={clas + " list-item"}>
+    <li className={clas + " list-item"} onClick={()=>onclick(id)}>
       <Row>
       <Col className='list-item-name'>
         {title}
