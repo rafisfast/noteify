@@ -8,6 +8,8 @@ import ListTitle from './list-title'
 const Collection = (props) => {
 
   const clas = props.class
+  const folders = props.folders
+  const notes   = props.notes
 
   return (
     <>

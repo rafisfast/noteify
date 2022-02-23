@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { Container, Row, Col, InputGroup, FormControl, OverlayTrigger, Button } from 'react-bootstrap';
+import axios from 'axios'
 
 import Searchlist from './search/searchlist';
 import Search from './search/search';
@@ -7,10 +8,13 @@ import Search from './search/search';
 import Collection from './collection/collection';
 import Group from './group/group';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 
   const search = useRef()
   const con = useRef()
+
+  const folders = props.folders
+  const notes   = props.notes
 
   const [show, setShow] = useState(false);
 
@@ -25,9 +29,9 @@ const Sidebar = () => {
       <div className='sidebar py-3 my-1 border-right'>
         <div className='inner-sidebar'>
           <Container fluid className='py-2 px-1' ref={con}>
-            <Search></Search>
-            <Collection class='pt-2 m-0'></Collection>
-            <Group></Group>
+            <Search notes={notes} folders={folders}></Search>
+            <Collection class='pt-2 m-0' notes={notes} folders={folders}></Collection>
+            <Group notes={notes} folders={folders}></Group>
           </Container>
         </div>
       </div>
