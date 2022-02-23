@@ -41,10 +41,10 @@ const Main = (props) => {
               </p>
             </div>
             <hr></hr>
-            <div contentEditable className='overflow-hidden pb-3'>
-              <i className='overflow-auto main-text'>
+            <div contentEditable className='overflow-hidden pb-3' onKeyPress={(e)=>console.log(e.target)}>
+              <p className='overflow-auto main-text p-0 m-0'>
                 {b}
-              </i>
+              </p>
             </div>
           </Container>
           <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>

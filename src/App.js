@@ -28,8 +28,10 @@ const App = () => {
       const data = response.data
       setnotes(data.notes)
       setfolders(data.folders)
-      console.log(data.notes)
-      console.log(data.folders)
+      if (data.notes[0]) {
+        settitle(data.notes[0].title)
+        setbody(data.notes[0].body)
+      }
     })
   },[])
 
