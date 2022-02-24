@@ -23,7 +23,7 @@ const App = () => {
   const [body, setbody] = useState("I")
 
   useEffect(()=> {
-    axios.post('http://localhost:500/fetch-data',{},{  headers: { 'Content-Type': 'application/json'}, withCredentials: true })
+    axios.post('http://localhost:500/fetch-data',{},{  headers: { 'Content-Type': 'application/json' }, withCredentials: true })
     .then((response) => {
       const data = response.data
       setnotes(data.notes)

@@ -80,9 +80,9 @@ const Main = (props) => {
             </div>
             <hr></hr>
             <div contentEditable className='overflow-hidden pb-3' ref={body} onInput={onTextChange} onKeyUp={onTextChange}>
-              <p className='overflow-auto main-text p-0 m-0'>
-                {bodyText}
-              </p>
+              {bodyText.split("\\n").map((e,i)=> {
+                return (<p className='overflow-auto main-text p-0 m-0'> {e}</p>)
+              })}
             </div>
           </Container>
           <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>
