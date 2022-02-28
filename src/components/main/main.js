@@ -39,46 +39,51 @@ const Main = (props) => {
     }
   },[])
 
+  useEffect(()=> {
+    console.log(bodyText)
+  },[bodyText])
+
   const [elements,setelements] = useState([])
 
   useEffect(() => {
   // deserialise body
-    const el = []
-    // const parsed  = JSON.parse(bodyText)
-    const split = bodyText.split("")
-    var text = ""
-    var count = 0
-    // \n Hello
-    // Hello\n
-    console.log(split)
-    split.map((character, i)=> {
-      console.log(character)
-      if ( character === "\\" && split[i+1] && split[i+1] === "n" ) {
-        count += 1
-        if (text !== "") {
-          el.push({type:"p",text:text})
-          text = ""
-        }
-        return
-      } else if ( character === "n" && split[i-1] && split[i-1] === "\\" ) {
-        return
-      }
+    console.log(bodyText)
+    // const el = []
+    // // const parsed  = JSON.parse(bodyText)
+    // const split = bodyText.split("")
+    // var text = ""
+    // var count = 0
+    // // \n Hello
+    // // Hello\n
+    // console.log(split)
+    // split.map((character, i)=> {
+    //   console.log(character)
+    //   if ( character === "\\" && split[i+1] && split[i+1] === "n" ) {
+    //     count += 1
+    //     if (text !== "") {
+    //       el.push({type:"p",text:text})
+    //       text = ""
+    //     }
+    //     return
+    //   } else if ( character === "n" && split[i-1] && split[i-1] === "\\" ) {
+    //     return
+    //   }
 
-      for (i=0;i<count;i++) {
-        el.push({type:"br"})
-      }
+    //   for (i=0;i<count;i++) {
+    //     el.push({type:"br"})
+    //   }
 
-      count = 0
-      text += character
-    })
+    //   count = 0
+    //   text += character
+    // })
     
-    if (text !== "") {
-      el.push(<p className='p-0 m-0'>{text}</p>)
-      text = ""
-    }
+    // if (text !== "") {
+    //   el.push(<p className='p-0 m-0'>{text}</p>)
+    //   text = ""
+    // }
 
-    console.log(el.length, el)
-    setelements(el)
+    // console.log(el.length, el)
+    // setelements(el)
 
   },[bodyText])
 
@@ -174,7 +179,7 @@ const Main = (props) => {
                    return (<div key={id}><br></br></div>)
                  }
                 })} */}
-                <textarea ref={input} className='textarea'></textarea>
+                <textarea ref={input} key={bodyText} className='textarea'>{bodyText}</textarea>
             </div>
           </Container>
           <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>

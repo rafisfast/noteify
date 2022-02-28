@@ -34,10 +34,11 @@ const App = () => {
       setnotes(data.notes)
       setfolders(data.folders)
       if (data.notes[0]) {
-        console.log(data.notes[0])
+        console.log(data.notes[0], body)
         settitle(JSON.parse(data.notes[0].title))
         setbody(JSON.parse(data.notes[0].body))
         setid(data.notes[0]._id)
+        console.log(body, JSON.parse(data.notes[0].body))
       }
     })
   },[saved])
