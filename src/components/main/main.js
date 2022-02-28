@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const Main = (props) => {
 
-  const titleRef = useRef()
-  const input  = useRef()
+  const title = useRef()
+  const body  = useRef()
 
   const titleText    = props.title
   const bodyText     = props.body
@@ -30,12 +30,12 @@ const Main = (props) => {
 
   const serialiseBody = () => {
     // serialise body text to save
-    return JSON.stringify(bodyText)
+    return JSON.stringify(body.current.value)
   }
 
   const serialiseTitle = () => {
     // serialise title text to save
-    return JSON.stringify(titleText)
+    return JSON.stringify(title.current.value)
   }
 
   useEffect(()=> {
@@ -74,10 +74,10 @@ const Main = (props) => {
       <div className="main-content py-3 my-1 overflow-hidden">
         <div className='notes my-auto' >
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"height":"100%"}}>
-            <textarea key={titleText} onKeyPress={onkeypress} style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}} className=' pt-2 main-title overflow-hidden'>{titleText}</textarea>
+            <textarea ref={title} key={titleText} onKeyPress={onkeypress} style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}} className=' pt-2 main-title overflow-hidden'>{titleText}</textarea>
             <hr></hr>
             <div className='overflow-hidden pb-3' onInput={onTextChange} onKeyUp={onTextChange}>
-                <textarea ref={input} key={bodyText} className='textarea'>{bodyText}</textarea>
+                <textarea ref={body} key={bodyText} className='textarea'>{bodyText}</textarea>
             </div>
           </Container>
           <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>
