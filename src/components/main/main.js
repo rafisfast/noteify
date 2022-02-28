@@ -2,16 +2,23 @@ import { useState } from 'react';
 import { useRef, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 
+import axios from 'axios';
+import { render } from '@testing-library/react';
+
 const Main = (props) => {
 
   const title = useRef()
   const text  = useRef()
   const body  = useRef()
 
-  const titleText     = props.title
+  const titleText    = props.title
   const bodyText     = props.body
+  const noteID       = props.noteid
+  
+  const [save,setsave] = props.saved
 
   const [timeout, settimeout]     = useState(0)
+  const [pressed, setpressed]     = useState(false)
   
   const onkeypress = (evt) => {
     const t = text.current.innerHTML
@@ -31,18 +38,72 @@ const Main = (props) => {
     }
   },[])
 
+  const [elements,setelements] = useState([])
+
+  useEffect(() => {
+  // deserialise
+    const el = []
+    // const parsed  = JSON.parse(bodyText)
+    const split = bodyText.split("")
+    var text = ""
+    var count = 0
+    // \n Hello
+    // Hello\n
+    console.log(split)
+    split.map((character, i)=> {
+      console.log(character)
+      if ( character === "\\" && split[i+1] && split[i+1] === "n" ) {
+        count += 1
+        if (text !== "") {
+          el.push(<p className='p-0 m-0'>{text}</p>)
+          text = ""
+        }
+        return
+      } else if ( character === "n" && split[i-1] && split[i-1] === "\\" ) {
+        return
+      }
+
+      for (i=0;i<count;i++) {
+        el.push(<div><br></br></div>)
+      }
+
+      count = 0
+      text += character
+    })
+    
+    if (text !== "") {
+      el.push(<p className='p-0 m-0'>{text}</p>)
+      text = ""
+    }
+
+    console.log(el.length, el)
+    setelements(el)
+
+  },[bodyText])
+
   const serialiseBody = () => {
     // serialise body text to save
     const children = [...body.current.children]
     var text     = ""
+    console.log(children)
     children.map((e)=>{
      var line = e.innerHTML
-     var broke = false
-     if (line === "<br>") {
-       line = "\\n"
-       broke = true
-     }
-     text += broke ? line : line + "\\n" 
+    //  console.log(line, JSON.parse(line))
+    //  var line = e.innerHTML
+     line = line.replace(/<br>/gm,"\\n")
+     text += line
+    })
+    return JSON.stringify(text)
+  }
+
+  const serialiseTitle = () => {
+    // serialise title text to save
+    const children = [...title.current.children]
+    var text     = ""
+    children.map((e)=>{
+     var line = e.innerHTML
+     line = line.replace(/<br>/gm,"")
+     text += line
     })
     return text
   }
@@ -51,20 +112,29 @@ const Main = (props) => {
     // save after 2 seconds of typing with timeout
     var saved = false
     const interval = setInterval(()=> {
-      if (new Date().getTime() > timeout) {
-        if (!saved) {
-          saved = true
-          const text = serialiseBody()
-          console.log(text)
+      if (pressed) {
+        if (new Date().getTime() > timeout) {
+          if (!saved) {
+            saved = true
+            const text = serialiseBody()
+            const title = serialiseTitle()
+            console.log(noteID)
+            console.log(text)
+            axios.post('http://localhost:500/save-note',{ id : noteID, body: text, title: title },{  headers: { 'Content-Type': 'application/json' }, withCredentials: true })
+            .then((response) => {
+              console.log(response)
+            })
+          }
         }
       }
     },100)
     return () => {
       clearInterval(interval)
     }
-  },[timeout])
+  },[timeout, pressed])
 
   const onTextChange = () => {
+    setpressed(true)
     settimeout(new Date().getTime() + 2000)
   }
 
@@ -80,9 +150,10 @@ const Main = (props) => {
             </div>
             <hr></hr>
             <div contentEditable className='overflow-hidden pb-3' ref={body} onInput={onTextChange} onKeyUp={onTextChange}>
-              {bodyText.split("\\n").map((e,i)=> {
-                return (<p className='overflow-auto main-text p-0 m-0'> {e}</p>)
-              })}
+               {elements.map((element)=> {
+                 console.log(element)
+                 return element
+                })}
             </div>
           </Container>
           <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>

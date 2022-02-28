@@ -13,8 +13,12 @@ import axios from 'axios';
 const App = () => {
 
   const [show,setshow] = useState(false)
+
   const onClose = () => {setshow(false)}
   const onOpen = () => {setshow(true)}
+  
+  const [saved,setsaved] = useState(false)
+  const [id,setid] = useState(0)
 
   const [notes,setnotes] = useState([])
   const [folders,setfolders] = useState([])
@@ -23,17 +27,20 @@ const App = () => {
   const [body, setbody] = useState("I")
 
   useEffect(()=> {
+    console.log("firing request")
     axios.post('http://localhost:500/fetch-data',{},{  headers: { 'Content-Type': 'application/json' }, withCredentials: true })
     .then((response) => {
       const data = response.data
       setnotes(data.notes)
       setfolders(data.folders)
       if (data.notes[0]) {
+        console.log(data.notes[0])
         settitle(data.notes[0].title)
-        setbody(data.notes[0].body)
+        setbody(JSON.parse(data.notes[0].body))
+        setid(data.notes[0]._id)
       }
     })
-  },[])
+  },[saved])
 
   const onClickNote = (id) => {
     // const id = e.target.id()
@@ -42,6 +49,7 @@ const App = () => {
       if (note._id === id) {
         settitle(note.title)
         setbody(note.body)
+        setid(id)
       }
     })
   }
@@ -60,7 +68,7 @@ const App = () => {
         <div className="d-flex my-auto p-0" style={{"height": "95vh","width":".2rem"}}>
           <div className="vr bg-secondary"></div>
         </div>
-        <Main body={body} title={title}></Main>
+        <Main body={body} title={title} saved={[saved,setsaved]} noteid={id}></Main>
         <SidebarOffCanvas show={show} onClose={onClose}></SidebarOffCanvas>
       </Row>
     </Container>
