@@ -10,6 +10,7 @@ const Main = (props) => {
   const title = useRef()
   const text  = useRef()
   const body  = useRef()
+  const input  = useRef()
 
   const titleText    = props.title
   const bodyText     = props.body
@@ -41,7 +42,7 @@ const Main = (props) => {
   const [elements,setelements] = useState([])
 
   useEffect(() => {
-  // deserialise
+  // deserialise body
     const el = []
     // const parsed  = JSON.parse(bodyText)
     const split = bodyText.split("")
@@ -55,7 +56,7 @@ const Main = (props) => {
       if ( character === "\\" && split[i+1] && split[i+1] === "n" ) {
         count += 1
         if (text !== "") {
-          el.push(<p className='p-0 m-0'>{text}</p>)
+          el.push({type:"p",text:text})
           text = ""
         }
         return
@@ -64,7 +65,7 @@ const Main = (props) => {
       }
 
       for (i=0;i<count;i++) {
-        el.push(<div><br></br></div>)
+        el.push({type:"br"})
       }
 
       count = 0
@@ -83,17 +84,18 @@ const Main = (props) => {
 
   const serialiseBody = () => {
     // serialise body text to save
-    const children = [...body.current.children]
-    var text     = ""
-    console.log(children)
-    children.map((e)=>{
-     var line = e.innerHTML
-    //  console.log(line, JSON.parse(line))
+    // const children = [...body.current.children]
+    // var text     = ""
+    // console.log(children)
+    // children.map((e)=>{
     //  var line = e.innerHTML
-     line = line.replace(/<br>/gm,"\\n")
-     text += line
-    })
-    return JSON.stringify(text)
+    // //  console.log(line, JSON.parse(line))
+    // //  var line = e.innerHTML
+    //  line = line.replace(/<br>/gm,"\\n")
+    //  text += line
+    // })
+    // return JSON.stringify(text)
+    return JSON.stringify(input.current.value)
   }
 
   const serialiseTitle = () => {
@@ -105,7 +107,7 @@ const Main = (props) => {
      line = line.replace(/<br>/gm,"")
      text += line
     })
-    return text
+    return JSON.stringify(text)
   }
 
   useEffect(()=> {
@@ -123,6 +125,7 @@ const Main = (props) => {
             axios.post('http://localhost:500/save-note',{ id : noteID, body: text, title: title },{  headers: { 'Content-Type': 'application/json' }, withCredentials: true })
             .then((response) => {
               console.log(response)
+              setsave(!save)
             })
           }
         }
@@ -138,22 +141,40 @@ const Main = (props) => {
     settimeout(new Date().getTime() + 2000)
   }
 
+  const starting = useRef()
+
+  const onBodyClick = () => {
+    // console.log(elements.length)
+    // if (elements.length > 0) {
+    //   if (starting.current) {
+    //     document.body.removeChild(starting.current);
+    //   }
+    // } else {
+    //   starting.current.innerHTML = "."
+    // }
+  }
+
   return(
     <Col style={{"overflow":"auto"}}>
       <div className="main-content py-3 my-1 overflow-hidden">
         <div className='notes my-auto' >
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"height":"100%"}}>
-            <div ref={title} contentEditable="true" className='pt-2 main-title'>
+            <div ref={title} contentEditable="true" className='pt-2 main-title' onInput={onTextChange} onKeyUp={onTextChange}>
               <p ref={text} className='py-1' style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}}>
                 {titleText}
               </p>
             </div>
             <hr></hr>
-            <div contentEditable className='overflow-hidden pb-3' ref={body} onInput={onTextChange} onKeyUp={onTextChange}>
-               {elements.map((element)=> {
-                 console.log(element)
-                 return element
-                })}
+            <div className='overflow-hidden pb-3' ref={body} onInput={onTextChange} onKeyUp={onTextChange} onClick={onBodyClick}>
+               {/* <p contentEditable className='m-0 p-0'></p>
+               {elements.map((element,id)=> {
+                 if (element.type === "p") {
+                   return (<p key={id} className='m-0 p-0'>{element.text}</p>)
+                 } else {
+                   return (<div key={id}><br></br></div>)
+                 }
+                })} */}
+                <textarea ref={input} className='textarea'></textarea>
             </div>
           </Container>
           <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>

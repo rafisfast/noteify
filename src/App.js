@@ -35,7 +35,7 @@ const App = () => {
       setfolders(data.folders)
       if (data.notes[0]) {
         console.log(data.notes[0])
-        settitle(data.notes[0].title)
+        settitle(JSON.parse(data.notes[0].title))
         setbody(JSON.parse(data.notes[0].body))
         setid(data.notes[0]._id)
       }

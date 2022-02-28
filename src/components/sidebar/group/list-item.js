@@ -28,7 +28,7 @@ const ListItem = (props) => {
 
               if (note._id === id) {
                 return (               
-                  <li  onClick={()=>onclick(id)} className='list-item-indent'>{note.title}</li>
+                  <li  onClick={()=>onclick(id)} className='list-item-indent'>{JSON.parse(note.title)}</li>
                 )
               }
 

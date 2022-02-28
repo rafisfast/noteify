@@ -17,7 +17,7 @@ const ListItem = (props) => {
     <li className={clas + " list-item"} onClick={()=>onclick(id)}>
       <Row>
       <Col className='list-item-name'>
-        {title}
+        {JSON.parse(title)}
       </Col>
       <Col>
         <div className='list-item-collection' style={{"background":color}}></div>

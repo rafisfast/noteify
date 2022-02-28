@@ -16,6 +16,16 @@
   /* border-radius: 5%; */
 }
 
+.textarea {
+  height: 100vh;
+  width: 100vw;
+  color:white;
+}
+
+.textarea:focus {
+  outline: none !important;
+}
+
 .notes {
   /* height:90vh; */
     background: #434343;
