@@ -3,13 +3,10 @@ import { useRef, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 
 import axios from 'axios';
-import { render } from '@testing-library/react';
 
 const Main = (props) => {
 
-  const title = useRef()
-  const text  = useRef()
-  const body  = useRef()
+  const titleRef = useRef()
   const input  = useRef()
 
   const titleText    = props.title
@@ -22,7 +19,7 @@ const Main = (props) => {
   const [pressed, setpressed]     = useState(false)
   
   const onkeypress = (evt) => {
-    const t = text.current.innerHTML
+    const t = titleText
     if (evt.which === 13) {
       evt.preventDefault();
     }
@@ -31,88 +28,14 @@ const Main = (props) => {
     }
   }
 
-  useEffect(()=> {
-    // prevent contenteditable entering
-    // title.current.addEventListener('keypress',onkeypress);
-    // return () => {
-    //   title.current.removeEventListener('keypress',onkeypress)
-    // }
-  },[])
-
-  useEffect(()=> {
-    console.log(bodyText)
-  },[bodyText])
-
-  const [elements,setelements] = useState([])
-
-  useEffect(() => {
-  // deserialise body
-    console.log(bodyText)
-    // const el = []
-    // // const parsed  = JSON.parse(bodyText)
-    // const split = bodyText.split("")
-    // var text = ""
-    // var count = 0
-    // // \n Hello
-    // // Hello\n
-    // console.log(split)
-    // split.map((character, i)=> {
-    //   console.log(character)
-    //   if ( character === "\\" && split[i+1] && split[i+1] === "n" ) {
-    //     count += 1
-    //     if (text !== "") {
-    //       el.push({type:"p",text:text})
-    //       text = ""
-    //     }
-    //     return
-    //   } else if ( character === "n" && split[i-1] && split[i-1] === "\\" ) {
-    //     return
-    //   }
-
-    //   for (i=0;i<count;i++) {
-    //     el.push({type:"br"})
-    //   }
-
-    //   count = 0
-    //   text += character
-    // })
-    
-    // if (text !== "") {
-    //   el.push(<p className='p-0 m-0'>{text}</p>)
-    //   text = ""
-    // }
-
-    // console.log(el.length, el)
-    // setelements(el)
-
-  },[bodyText])
-
   const serialiseBody = () => {
     // serialise body text to save
-    // const children = [...body.current.children]
-    // var text     = ""
-    // console.log(children)
-    // children.map((e)=>{
-    //  var line = e.innerHTML
-    // //  console.log(line, JSON.parse(line))
-    // //  var line = e.innerHTML
-    //  line = line.replace(/<br>/gm,"\\n")
-    //  text += line
-    // })
-    // return JSON.stringify(text)
-    return JSON.stringify(input.current.value)
+    return JSON.stringify(bodyText)
   }
 
   const serialiseTitle = () => {
     // serialise title text to save
-    const children = [...title.current.children]
-    var text     = ""
-    children.map((e)=>{
-     var line = e.innerHTML
-     line = line.replace(/<br>/gm,"")
-     text += line
-    })
-    return JSON.stringify(text)
+    return JSON.stringify(titleText)
   }
 
   useEffect(()=> {
@@ -146,35 +69,14 @@ const Main = (props) => {
     settimeout(new Date().getTime() + 2000)
   }
 
-  const starting = useRef()
-
-  const onBodyClick = () => {
-    // console.log(elements.length)
-    // if (elements.length > 0) {
-    //   if (starting.current) {
-    //     document.body.removeChild(starting.current);
-    //   }
-    // } else {
-    //   starting.current.innerHTML = "."
-    // }
-  }
-
   return(
     <Col style={{"overflow":"auto"}}>
       <div className="main-content py-3 my-1 overflow-hidden">
         <div className='notes my-auto' >
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"height":"100%"}}>
-            <textarea key={titleText} className=' pt-2 main-title overflow-hidden'>{titleText}</textarea>
+            <textarea key={titleText} onKeyPress={onkeypress} style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}} className=' pt-2 main-title overflow-hidden'>{titleText}</textarea>
             <hr></hr>
-            <div className='overflow-hidden pb-3' ref={body} onInput={onTextChange} onKeyUp={onTextChange} onClick={onBodyClick}>
-               {/* <p contentEditable className='m-0 p-0'></p>
-               {elements.map((element,id)=> {
-                 if (element.type === "p") {
-                   return (<p key={id} className='m-0 p-0'>{element.text}</p>)
-                 } else {
-                   return (<div key={id}><br></br></div>)
-                 }
-                })} */}
+            <div className='overflow-hidden pb-3' onInput={onTextChange} onKeyUp={onTextChange}>
                 <textarea ref={input} key={bodyText} className='textarea'>{bodyText}</textarea>
             </div>
           </Container>
