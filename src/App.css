@@ -43,6 +43,10 @@
   /* width:50vw; */
 }
 
+.main-title:focus {
+  outline: none !important;
+}
+
 .sidebar {
   /* min-height:100vh; */
   /* background-color: red; */
@@ -65,7 +69,7 @@
   font-size:30px;
   font-weight:bold;
   height: 50px;
-
+  color: white;
   /* always 2x font-size */
   /* height: 15%; */
 }

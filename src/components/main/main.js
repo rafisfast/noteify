@@ -33,10 +33,10 @@ const Main = (props) => {
 
   useEffect(()=> {
     // prevent contenteditable entering
-    title.current.addEventListener('keypress',onkeypress);
-    return () => {
-      title.current.removeEventListener('keypress',onkeypress)
-    }
+    // title.current.addEventListener('keypress',onkeypress);
+    // return () => {
+    //   title.current.removeEventListener('keypress',onkeypress)
+    // }
   },[])
 
   useEffect(()=> {
@@ -164,11 +164,7 @@ const Main = (props) => {
       <div className="main-content py-3 my-1 overflow-hidden">
         <div className='notes my-auto' >
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"height":"100%"}}>
-            <div ref={title} contentEditable="true" className='pt-2 main-title' onInput={onTextChange} onKeyUp={onTextChange}>
-              <p ref={text} className='py-1' style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}}>
-                {titleText}
-              </p>
-            </div>
+            <textarea key={titleText} className=' pt-2 main-title overflow-hidden'>{titleText}</textarea>
             <hr></hr>
             <div className='overflow-hidden pb-3' ref={body} onInput={onTextChange} onKeyUp={onTextChange} onClick={onBodyClick}>
                {/* <p contentEditable className='m-0 p-0'></p>
