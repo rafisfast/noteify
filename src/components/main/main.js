@@ -12,6 +12,7 @@ const Main = (props) => {
   const titleText    = props.title
   const bodyText     = props.body
   const noteID       = props.noteid
+  const date         = props.date
   
   const [save,setsave] = props.saved
 
@@ -80,8 +81,8 @@ const Main = (props) => {
                 <textarea ref={body} key={bodyText} className='textarea'>{bodyText}</textarea>
             </div>
           </Container>
-          <span style={{"right":"20px","width":"200px","position":"absolute","bottom":"20px","text-align":"left"}}>
-            <b>Last Edited..</b>
+          <span style={{"right":"20px","width":"500px","position":"absolute","bottom":"20px","text-align":"right"}}>
+            <b>Last Edited: {date.toUTCString()}</b>
           </span>
         </div>
       </div>

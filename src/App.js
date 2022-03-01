@@ -25,6 +25,7 @@ const App = () => {
 
   const [title, settitle] = useState("Hello")
   const [body, setbody] = useState("I")
+  const [date, setdate] = useState(new Date())
 
   useEffect(()=> {
     console.log("firing request")
@@ -38,6 +39,7 @@ const App = () => {
         settitle(JSON.parse(data.notes[0].title))
         setbody(JSON.parse(data.notes[0].body))
         setid(data.notes[0]._id)
+        setdate(new Date(data.notes[0].last_edited))
         console.log(body, JSON.parse(data.notes[0].body))
       }
     })
@@ -69,7 +71,7 @@ const App = () => {
         <div className="d-flex my-auto p-0" style={{"height": "95vh","width":".2rem"}}>
           <div className="vr bg-secondary"></div>
         </div>
-        <Main body={body} title={title} saved={[saved,setsaved]} noteid={id}></Main>
+        <Main body={body} title={title} saved={[saved,setsaved]} noteid={id} date={date}></Main>
         <SidebarOffCanvas show={show} onClose={onClose}></SidebarOffCanvas>
       </Row>
     </Container>
