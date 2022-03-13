@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRef, useEffect } from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
+import TextEditor from './editor/text-editor'
 
 import axios from 'axios';
 
@@ -18,16 +19,6 @@ const Main = (props) => {
 
   const [timeout, settimeout]     = useState(0)
   const [pressed, setpressed]     = useState(false)
-  
-  const onkeypress = (evt) => {
-    const t = titleText
-    if (evt.which === 13) {
-      evt.preventDefault();
-    }
-    if ((t + evt.key).length > 64) {
-      evt.preventDefault()
-    }
-  }
 
   const serialiseBody = () => {
     // serialise body text to save
@@ -40,7 +31,7 @@ const Main = (props) => {
   }
 
   useEffect(()=> {
-    // save after 2 seconds of typing with timeout
+    // save after .5 seconds of typing with timeout
     var saved = false
     const interval = setInterval(()=> {
       if (pressed) {
@@ -67,7 +58,7 @@ const Main = (props) => {
 
   const onTextChange = () => {
     setpressed(true)
-    settimeout(new Date().getTime() + 2000)
+    settimeout(new Date().getTime() + 500)
   }
 
   return(
@@ -77,9 +68,7 @@ const Main = (props) => {
           <Container fluid className='overflow-auto pl-5 main-inner' style={{"height":"100%"}}>
             <textarea ref={title} key={titleText} onKeyPress={onkeypress} style={{"text-overflow":"ellipsis","white-space":"nowrap","overflow":"hidden"}} className=' pt-2 main-title overflow-hidden'>{titleText}</textarea>
             <hr></hr>
-            <div className='overflow-hidden pb-3' onInput={onTextChange} onKeyUp={onTextChange}>
-                <textarea ref={body} key={bodyText} className='textarea'>{bodyText}</textarea>
-            </div>
+            <TextEditor></TextEditor>
           </Container>
           <span style={{"right":"20px","width":"500px","position":"absolute","bottom":"20px","text-align":"right"}}>
             <b>Last Edited: {date.toUTCString()}</b>

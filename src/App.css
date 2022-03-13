@@ -305,3 +305,7 @@ textarea {
   border-radius: 100px !important;
   color: white !important;
 }
+
+.text {
+  cursor:text;
+}
