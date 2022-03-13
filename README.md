@@ -4,3 +4,5 @@
 Introducing.
 Noteify
 
+This project is currently being worked on. In React.
+The backend is made in Express.JS
