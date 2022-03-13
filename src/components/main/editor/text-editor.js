@@ -18,13 +18,20 @@ const Editor = () => {
 
   const [selected,setselected] = useState(null)
   const [typed,settyped] = useState('')
+  const [action,setaction] = useState('')
 
   const actions = {"Enter" : true, "Backspace" : true}
 
   const keydown = (e) => {
-    console.log(e.key)
     if (e.key in actions) {
-      //
+      // Enter handling
+      // Backspace handling
+      setaction("")
+      switch(e.key) {
+        case "Backspace": {
+          setaction(e.key)
+        }
+      }
     }
   }
   
@@ -60,7 +67,7 @@ const Editor = () => {
 
   return (
     <div className='text-container' style={{"height":"100%","width":"100%"}}>
-      <Field selected={selected} typed={typed}></Field>
+      <Field selected={selected} typed={typed} action={action}></Field>
     </div>
   )
 }

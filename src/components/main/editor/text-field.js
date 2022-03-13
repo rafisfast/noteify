@@ -16,9 +16,18 @@ const Field = (props) => {
   useEffect(()=> {
     if (selected === field.current) {
       if (classname === original) classname = classname + 'selected'
-      setText(Text + typed)
+      setText(parse(Text + typed))
     }
   },[selected, typed])
+
+  useEffect(()=> {
+    switch(action) {
+      case "Backspace": {
+        console.log("trying")
+        setText(Text.substring(0,Math.max(Text.length-1,0)))
+      }
+    }
+  },[action])
 
   useEffect(()=> {
     console.log(Text)
@@ -26,7 +35,7 @@ const Field = (props) => {
 
   return (
     <div ref={field} className={classname} style={{"width":"100%"}}> {/*onInput={onTextChange} onKeyUp={onTextChange}*/}
-      {parse(Text)}
+      {Text}
     </div> 
   )
 }
