@@ -7,34 +7,38 @@ const Field = (props) => {
   const selected = props.selected
   const typed = props.typed
   const action = props.action
+  const data_key = props.data_key
 
   const [Text,setText] = useState('')
 
-  const original = 'overflow-hidden pb-3 text '
+  const original = 'pb-3 text'
   var classname = original 
 
   useEffect(()=> {
-    if (selected === field.current) {
-      if (classname === original) classname = classname + 'selected'
+    console.log(data_key, selected)
+    if (selected === data_key) {
+      if (classname === original) classname = classname + ' selected'
       setText(parse(Text + typed))
     }
-  },[selected, typed])
+  },[selected, typed, data_key])
 
   useEffect(()=> {
-    switch(action) {
-      case "Backspace": {
-        console.log("trying")
-        setText(Text.substring(0,Math.max(Text.length-1,0)))
+    if (selected === data_key) {
+      switch(action) {
+        case "Backspace": {
+          console.log("trying")
+          setText(old=>Text.substring(0,Math.max(old.length-1,0)))
+        }
       }
     }
-  },[action])
+  },[action, data_key, selected])
 
   useEffect(()=> {
     console.log(Text)
   },[Text])
 
   return (
-    <div ref={field} className={classname} style={{"width":"100%"}}> {/*onInput={onTextChange} onKeyUp={onTextChange}*/}
+    <div ref={field} data_key={data_key} className={classname} style={{"width":"100%"}}> {/*onInput={onTextChange} onKeyUp={onTextChange}*/}
       {Text}
     </div> 
   )

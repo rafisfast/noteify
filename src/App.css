@@ -308,4 +308,5 @@ textarea {
 
 .text {
   cursor:text;
+  word-break: break-all;
 }
