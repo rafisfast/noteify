@@ -1,3 +1,4 @@
+import { act } from '@testing-library/react';
 import { useRef, useEffect, useState } from 'react';
 import Field from './text-field';
 
@@ -9,9 +10,25 @@ const Editor = () => {
   // selected class, selected = true then yknow give it selected
   // typing
 
+  // if it goes over width limit then set to next line and select line
+  // enter should create new line
+  // backspace should erase character
+  // backspacing enough from a line should remove line
+  // caret if selected
+
   const [selected,setselected] = useState(null)
+  const [typed,settyped] = useState('')
+
+  const actions = {"Enter" : true, "Backspace" : true}
+
+  const keydown = (e) => {
+    console.log(e.key)
+    if (e.key in actions) {
+      //
+    }
+  }
   
-  const keypress = (e)=> {
+  const keypress = (e) => {
     // if (e.key in )
     if (e.key !== "Enter") {
       e.preventDefault()
@@ -20,15 +37,20 @@ const Editor = () => {
         key = "&nbsp;"
       }
       if (selected) {
-        selected.innerHTML += key
+        settyped("")
+        settyped(key) 
       }
     }
   }
   
   useEffect(()=> {
     document.addEventListener("keypress",keypress)
-    return ()=> document.removeEventListener("keypress",keypress)
-  },[selected])
+    document.addEventListener("keydown",keydown)
+    return ()=> {
+      document.removeEventListener("keypress",keypress)
+      document.removeEventListener("keydown",keydown)
+    }
+  },[selected, typed])
 
   useEffect(()=> {
     document.addEventListener('click',(e)=>{
@@ -38,7 +60,7 @@ const Editor = () => {
 
   return (
     <div className='text-container' style={{"height":"100%","width":"100%"}}>
-      <Field selected={selected}></Field>
+      <Field selected={selected} typed={typed}></Field>
     </div>
   )
 }
