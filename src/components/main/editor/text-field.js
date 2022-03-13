@@ -4,6 +4,7 @@ import parse from "html-react-parser";
 const Field = (props) => {
 
   const field = useRef()
+
   const selected = props.selected
   const typed = props.typed
   const action = props.action
@@ -11,7 +12,7 @@ const Field = (props) => {
 
   const [Text,setText] = useState('')
 
-  const original = 'pb-3 text'
+  const original = 'pt-1 pb-1 text'
   var classname = original 
 
   useEffect(()=> {
@@ -24,10 +25,13 @@ const Field = (props) => {
 
   useEffect(()=> {
     if (selected === data_key) {
-      switch(action) {
+      switch(action.type) {
         case "Backspace": {
           console.log("trying")
           setText(old=>Text.substring(0,Math.max(old.length-1,0)))
+          if (Text === "") {
+            action.callback(action.type)
+          }
         }
       }
     }

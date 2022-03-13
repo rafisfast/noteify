@@ -22,13 +22,31 @@ const Editor = () => {
   const [rows, setrows] = useState([0])
   const actions = {"Enter" : true, "Backspace" : true}
 
+  const actionCompleteCallback = (action) => {
+    switch(action) {
+      case "Backspace": {
+        const r = rows.slice(Math.max(0,rows.length-1))
+        setrows(r)
+        break;
+      }
+      case "Enter": {
+        break;
+      }
+    }
+  }
+
+  const switchToLine = (key) => {
+    setaction({})
+    settyped('')
+    setselected(key)
+  }
+
   const keydown = (e) => {
     if (e.key in actions) {
-      // Enter handling
-      setaction("")
+      setaction({})
       switch(e.key) {
         case "Backspace": {
-          setaction(e.key)
+          setaction({"type":e.key,"callback":actionCompleteCallback})
           break;
         }
         case "Enter": {
@@ -36,8 +54,6 @@ const Editor = () => {
             const newRows = rows.slice(); 
             newRows.push(0);
             setrows(newRows);
-            settyped('')
-            setselected(rows.length-1)
           }
           break;
         }
@@ -62,8 +78,7 @@ const Editor = () => {
   const onClick = (e)=>{
     const key = e.target.getAttribute('data_key')
     if (key) {
-      settyped('')
-      setselected(parseInt(key))
+      switchToLine(parseInt(key))
     }
   }
   
@@ -77,6 +92,7 @@ const Editor = () => {
   },[selected, typed])
 
   useEffect(()=> {
+    switchToLine(rows.length-1)
     document.addEventListener('click',onClick)
     return () => document.removeEventListener('click',onClick)
   },[rows])
