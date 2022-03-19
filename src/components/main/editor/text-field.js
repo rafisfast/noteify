@@ -27,10 +27,12 @@ const Field = (props) => {
     if (selected === data_key) {
       switch(action.type) {
         case "Backspace": {
-          console.log("trying")
-          setText(old=>Text.substring(0,Math.max(old.length-1,0)))
-          if (Text === "") {
-            action.callback(action.type)
+          if (Text !== null) {
+            if (typeof Text === 'string') setText(old=>Text.substring(0,Math.max(old.length-1,0)))
+          }
+          console.log(Text, typeof Text)
+          if (Text === "" || typeof(Text) !== "string") {
+            action.callback(action.type,action.id)
           }
         }
       }

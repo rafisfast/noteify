@@ -1,32 +1,32 @@
 import { act } from '@testing-library/react';
 import { useRef, useEffect, useState, createRef } from 'react';
+
 import Field from './text-field';
 
 const Editor = () => {
 
-  // if it goes over width limit then set to next line and select line
-  // enter should create new line
-  // backspace should erase character
-  // backspacing enough from a line should remove line
   // caret if selected
   // entering should shift the lines over
-
-  // const [rows, setrows] = useState(1)
-  // const defaultRow = useRef()
-  // const fields = {"1": }
 
   const [selected,setselected] = useState(0)
   const [typed,settyped] = useState('')
   const [action,setaction] = useState('')
+  const [sessions,setsessions] = useState({})
 
   const [rows, setrows] = useState([0])
   const actions = {"Enter" : true, "Backspace" : true}
 
-  const actionCompleteCallback = (action) => {
+  const actionCompleteCallback = (action,id) => {
     switch(action) {
       case "Backspace": {
-        const r = rows.slice(Math.max(0,rows.length-1))
-        setrows(r)
+        if (sessions[id] !== true) {
+          sessions[id] = true
+          setsessions(sessions)
+          const r = rows.slice(0,Math.max(0,rows.length-1))
+          setselected(r[r.length-1])
+          setrows(r)
+          switchToLine(selected - 1)
+        }
         break;
       }
       case "Enter": {
@@ -46,14 +46,19 @@ const Editor = () => {
       setaction({})
       switch(e.key) {
         case "Backspace": {
-          setaction({"type":e.key,"callback":actionCompleteCallback})
+          const session = window.crypto.randomUUID()
+          sessions[session] = false
+          setsessions(sessions)
+          setaction({"type":e.key,"callback":actionCompleteCallback,"id":session})
           break;
         }
         case "Enter": {
           if (selected !== null) {
+            console.log("enter")
             const newRows = rows.slice(); 
             newRows.push(0);
             setrows(newRows);
+            switchToLine(selected + 1)
           }
           break;
         }
@@ -76,6 +81,7 @@ const Editor = () => {
   }
 
   const onClick = (e)=>{
+    console.log(e)
     const key = e.target.getAttribute('data_key')
     if (key) {
       switchToLine(parseInt(key))
@@ -92,7 +98,7 @@ const Editor = () => {
   },[selected, typed])
 
   useEffect(()=> {
-    switchToLine(rows.length-1)
+    // switchToLine(rows[rows.length-1])
     document.addEventListener('click',onClick)
     return () => document.removeEventListener('click',onClick)
   },[rows])
