@@ -22,10 +22,8 @@ const Editor = () => {
         if (sessions[id] !== true) {
           sessions[id] = true
           setsessions(sessions)
-          const r = rows.slice(0,Math.max(0,rows.length-1))
-          setselected(r[r.length-1])
+          const r = rows.slice(0,Math.max(1,rows.length-1))
           setrows(r)
-          switchToLine(selected - 1)
         }
         break;
       }
@@ -81,7 +79,6 @@ const Editor = () => {
   }
 
   const onClick = (e)=>{
-    console.log(e)
     const key = e.target.getAttribute('data_key')
     if (key) {
       switchToLine(parseInt(key))
@@ -98,7 +95,6 @@ const Editor = () => {
   },[selected, typed])
 
   useEffect(()=> {
-    // switchToLine(rows[rows.length-1])
     document.addEventListener('click',onClick)
     return () => document.removeEventListener('click',onClick)
   },[rows])
