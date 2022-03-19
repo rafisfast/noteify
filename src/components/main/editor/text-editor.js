@@ -22,7 +22,7 @@ const Editor = () => {
         if (sessions[id] !== true) {
           sessions[id] = true
           setsessions(sessions)
-          const r = rows.slice(0,Math.max(1,rows.length-1))
+          const r = rows.slice(1,Math.max(0,rows.length-1))
           setrows(r)
         }
         break;
