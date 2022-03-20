@@ -114,6 +114,14 @@ textarea {
   border-radius: 1rem;
 }
 
+.caret {
+  background: red;
+  position: absolute;
+  border-radius: 2px;
+  width: 2px;
+  height: 25px;
+}
+
 .list-item-name {
   color: white;
 }
