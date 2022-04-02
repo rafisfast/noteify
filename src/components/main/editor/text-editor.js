@@ -75,13 +75,28 @@ const Editor = () => {
   const keypress = (e) => {
     if (e.key !== "Enter") {
       if (selected === null) return
+      
       var key = e.key
+      e.preventDefault()
+
+      // create a new span with a style of inline-block to calculate string width
+      var el = document.createElement("span");
+      el.style.display = "inline-block"
+      
+      /// set it up to be current fields text
+      const s = e.target.innerHTML.toString().replaceAll("&nbsp;"," ")
+      el.innerHTML = s.slice(0,window.getSelection().focusOffset+1)
+      document.getElementById("root").appendChild(el)
+
+      
       settyped("")
       settyped(key)
-      e.preventDefault()
+      el.remove()
+      
       if (e.code === "Space") {
         key = "&nbsp;"
       }
+
     }
   }
 
@@ -106,17 +121,18 @@ const Editor = () => {
       const s = e.target.innerHTML.toString().replaceAll("&nbsp;"," ")
       el.innerHTML = s.slice(0,window.getSelection().focusOffset+1)
       document.getElementById("root").appendChild(el)
-
+      
       // change caret position to clicked position
       // const left = el.clientWidth + el.left
       // const top  = el.clientTop // top adjust for long strings
       
-      setcaretLeft(offset(field).left + el.clientWidth - 1)
+      setcaretLeft(offset(field).left + el.clientWidth + 2)
       setcaretTop(offset(field).top + 3)
 
       console.log(el.clientTop, offset(el).top)
 
       el.remove()
+
     } else {
 
       setcaretVisible(false)

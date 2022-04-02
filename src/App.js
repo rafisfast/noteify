@@ -29,9 +29,10 @@ const App = () => {
 
   useEffect(()=> {
     console.log("firing request")
-    axios.post('http://localhost:500/fetch-data',{},{  headers: { 'Content-Type': 'application/json' }, withCredentials: true })
+    axios.post('http://localhost:500/fetch-data',{},{ /*headers: { 'Content-Type': 'application/json' },*/ withCredentials: true })
     .then((response) => {
       const data = response.data
+      console.log(data, data.notes,)
       setnotes(data.notes)
       setfolders(data.folders)
       if (data.notes[0]) {
